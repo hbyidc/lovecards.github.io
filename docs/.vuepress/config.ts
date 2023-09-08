@@ -18,6 +18,7 @@ export default {
         lineNumbers: true,
     },
     theme: defaultTheme({
+        repo: 'LoveCards/lovecards.github.io',
         logo: "/logo.png",
         navbar: NavbarItem,
         sidebar: Sidebar,
