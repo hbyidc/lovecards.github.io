@@ -295,11 +295,11 @@ $Config = [
 
 当你的模板存在`Config.php`文件时，模板将会出现**设置按钮**
 
-![](../../../Images/Docs/V2/c783cd81f5fe9447c03258813a19133e.jpeg)
+![](../../../Images/Docs/V2/Development/ThemeDevelopment/c783cd81f5fe9447c03258813a19133e.jpeg)
 
 进入后，系统将会自动按照不同的配置格式分别加载配置项
 
-![](../../../Images/Docs/V2/5ab91aa028b9ee38fe8c32651ecf7b96.jpeg)
+![](../../../Images/Docs/V2/Development/ThemeDevelopment/5ab91aa028b9ee38fe8c32651ecf7b96.jpeg)
 
 ### 主题配置的使用
 

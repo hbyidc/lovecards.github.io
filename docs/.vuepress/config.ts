@@ -19,6 +19,8 @@ export default {
     },
     theme: defaultTheme({
         repo: 'LoveCards/lovecards.github.io',
+        docsDir: 'docs',
+        editLinkText: '🤔不完美，前往修改',
         logo: "/logo.png",
         navbar: NavbarItem,
         sidebar: Sidebar,
