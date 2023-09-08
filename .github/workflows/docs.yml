@@ -31,17 +31,29 @@ jobs:
                   # 选择要使用的 node 版本
                   node-version: 18
                   # 缓存 pnpm 依赖
-                #   cache: pnpm
+                  # cache: pnpm
+
+            # https://mrseawave.github.io/blogs/articles/2021/12/17/github-actions-cache/
+            - name: 缓存目录 node_modules
+              id: cache-node-modules
+              uses: actions/cache@v2
+              with:
+                path: node_modules
+                key: ${{ runner.os }}-${{ matrix.node-version }}-nodeModules-${{ hashFiles('package-lock.json') }}-${{ hashFiles('package.json') }}
+                restore-keys: |
+                    ${{ runner.os }}-${{ matrix.node-version }}-nodeModules-
+            
+            - name: 安装依赖
+              if: steps.cache-node-modules.outputs.cache-hit != 'true'
+              run: npm install
 
             # 运行构建脚本
-            - name: npm install
-              run: npm install
-            - name: Build VuePress site
+            - name: 构建vuepress
               run: npm run build
 
             # 查看 workflow 的文档来获取更多信息
             # @see https://github.com/crazy-max/ghaction-github-pages
-            - name: Deploy to GitHub Pages
+            - name: 发布到分支page
               uses: crazy-max/ghaction-github-pages@v3
               with:
                   # 部署到 page 分支
