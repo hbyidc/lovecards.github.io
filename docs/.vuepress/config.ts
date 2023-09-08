@@ -1,6 +1,6 @@
 import { defaultTheme } from "vuepress";
-import { NavbarItem } from "./navbar";
-import Sidebar from "./sidebar";
+import { NavbarItem } from "./Navbar";
+import Sidebar from "./Sidebar";
 
 export default {
     // 页面标题
