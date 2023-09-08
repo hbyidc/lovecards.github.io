@@ -1,0 +1,25 @@
+import { defaultTheme } from "vuepress";
+import { NavbarItem } from "./navbar";
+import Sidebar from "./sidebar";
+
+export default {
+    // 页面标题
+    title: "LoveCards | 文档",
+    // 网页描述
+    description: "在我筑起的“领域”中，众人皆可“倾心倾意”",
+    head: [
+        // 页面icon
+        ["link", { rel: "icon", href: "/logo.png" }],
+    ],
+    // 端口号
+    port: 3000,
+    markdown: {
+        // 代码块行号
+        lineNumbers: true,
+    },
+    theme: defaultTheme({
+        logo: "/logo.png",
+        navbar: NavbarItem,
+        sidebar: Sidebar,
+    }),
+};
