@@ -10,6 +10,8 @@ description:
 
 ## 一.目录结构
 
+> 主题存放于`/public/theme`文件夹下
+
 ```
 .
 ├── assets (资源目录)
