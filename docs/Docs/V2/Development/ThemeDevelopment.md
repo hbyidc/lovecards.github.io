@@ -135,7 +135,9 @@ description:
 | **CardsTags**List        | _Array_  | 同上文 |          |
 | **CardsTags**ListJson    | _String_ | 同上文 |          |
 
+### 使用变量
 
+[五.主题语法](./ThemeDevelopment.md#五-主题语法)
 
 ## 三.配置编写
 

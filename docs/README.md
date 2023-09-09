@@ -4,9 +4,12 @@ lang: zh-CN
 heroText: LoveCards
 heroImage: /logo.png
 actions:
-    - text: 快速上手
+    - text: 快速开始
       link: /Docs/V2/QuickStart/
       type: primary
+    - text: 项目主页
+      link: https://github.com/LoveCards
+      type: secondary
 features:
     - title: 轻量级框架
       details: 当前版本使用ThinkPHP作为基础框架，支持PHP8+版本
