@@ -20,7 +20,7 @@ description:
 ├── cards-tag.html (卡片标签分类页，可选的)
 ├── cards.html (卡片标签分类页，可选的)
 ├── index.html (门户首页)
-├── config.ini  (主题版本信息)
+├── info.ini  (主题版本信息)
 ├── config.php (主题配置，可选的)
 └── show.png (主题预览图)
 ```
@@ -48,16 +48,16 @@ description:
 即，`/public/view/index`目录下的模板开发时，所有页面可用的变量
 :::
 
-| 参数名                 | 类型     | 描述                     | 返回示例 |
-| ---------------------- | -------- | ------------------------ | -------- |
-| **Theme**DirectoryPath | _String_ | 获取当前模板的服务器路径 |          |
-| **Theme**Config        | _Array_  | 获取当前模板的配置       |          |
-| **View**Keywords       | _String_ | 渲染页面的关键词         |          |
-| **View**Description    | _String_ | 渲染页面的介绍           |          |
-| **View**Title          | _String_ | 渲染页面的标题           |          |
-| **System**Data         | _Array_  | 系统信息                 |          |
-| **System**Config       | _Array_  | 系统配置                 |          |
-| **LC**VersionInfo      | _Array_  | 程序本体信息             |          |
+| 参数名                     | 类型     | 描述                     | 返回示例 |
+| -------------------------- | -------- | ------------------------ | -------- |
+| **Theme**AssetsUrlPath | _String_ | 获取当前模板的服务器路径 |          |
+| **Theme**Config            | _Array_  | 获取当前模板的配置       |          |
+| **View**Keywords           | _String_ | 渲染页面的关键词         |          |
+| **View**Description        | _String_ | 渲染页面的介绍           |          |
+| **View**Title              | _String_ | 渲染页面的标题           |          |
+| **System**Data             | _Array_  | 系统信息                 |          |
+| **System**Config           | _Array_  | 系统配置                 |          |
+| **LC**VersionInfo          | _Array_  | 程序本体信息             |          |
 
 ### index.html
 
@@ -137,7 +137,7 @@ description:
 
 ### 使用变量
 
-[五.主题语法](./ThemeDevelopment.md#五-主题语法)
+[五.语法示例](./ThemeDevelopment.md#五-语法示例)
 
 ## 三.配置编写
 
@@ -348,7 +348,7 @@ $Config = [
 
 ### 默认主题的版本信息及释义
 
-`./config.ini`
+`./info.ini`
 
 ```ini
 {
@@ -370,7 +370,7 @@ $Config = [
 
 
 
-## 五.主题语法
+## 五.语法示例
 
 ### 1.变量输出
 
@@ -446,7 +446,9 @@ Email：{$data['email']}
 
 ### 8.静态资源
 
+### 示例.含分页列表渲染
 
+### 示例.接入极验
 
 ### 详细语法参考
 
@@ -455,11 +457,7 @@ Email：{$data['email']}
 主题开发不顺时，及时参考`默认主题`，如有疑问可通过社区询问交流
 :::
 
-### 含分页列表渲染示例
-
-
-
-
+### 
 
 ## 六.开发注意
 

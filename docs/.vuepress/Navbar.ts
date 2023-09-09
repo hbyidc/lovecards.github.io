@@ -9,7 +9,7 @@ export const NavbarItem = [
         ],
     },
     { text: "官网", link: "https://lovecards.cn", target: "_blank" },
-    { text: "组织", link: "https://github.com/LoveCards", target: "_blank" },
+    { text: "项目主页", link: "https://github.com/LoveCards", target: "_blank" },
     // { text: "论坛", link: "https://forum.lovecards.cn", target: "_blank" },
     // {
     //     text: "交流群",
