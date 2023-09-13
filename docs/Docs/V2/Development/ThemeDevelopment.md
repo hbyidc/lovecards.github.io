@@ -31,8 +31,6 @@ description:
 当访问至可选文件时如若缺失将自动重定向到 404 页面
 :::
 
-
-
 ## 二.基础变量
 
 ### 部分变量命名详解
@@ -50,16 +48,16 @@ description:
 即，`/public/view/index`目录下的模板开发时，所有页面可用的变量
 :::
 
-| 参数名                     | 类型     | 描述                     | 返回示例 |
-| -------------------------- | -------- | ------------------------ | -------- |
-| **Theme**AssetsUrlPath | _String_ | 获取当前模板的服务器路径 |          |
-| **Theme**Config            | _Array_  | 获取当前模板的配置       |          |
-| **View**Keywords           | _String_ | 渲染页面的关键词         |          |
-| **View**Description        | _String_ | 渲染页面的介绍           |          |
-| **View**Title              | _String_ | 渲染页面的标题           |          |
-| **System**Data             | _Array_  | 系统信息                 |          |
-| **System**Config           | _Array_  | 系统配置                 |          |
-| **LC**VersionInfo          | _Array_  | 程序本体信息             |          |
+| 参数名                 | 类型     | 描述                   | 返回示例 |
+| ---------------------- | -------- | ---------------------- | -------- |
+| **Theme**AssetsUrlPath | _String_ | 获取当前模板的资源路径 |          |
+| **Theme**Config        | _Array_  | 获取当前模板的配置     |          |
+| **View**Keywords       | _String_ | 渲染页面的关键词       |          |
+| **View**Description    | _String_ | 渲染页面的介绍         |          |
+| **View**Title          | _String_ | 渲染页面的标题         |          |
+| **System**Data         | _Array_  | 系统信息               |          |
+| **System**Config       | _Array_  | 系统配置               |          |
+| **LC**VersionInfo      | _Array_  | 程序本体信息           |          |
 
 ### index.html
 
@@ -153,7 +151,7 @@ description:
 :::
 
 ::: warning 注意
-`Text`配置格式下，后端接收的字符串将会使用URL编码`urlencode()`后写入配置文件，但通过`ThemeConfig:Array`获取到的变量则为解码后的内容
+`Text`配置格式下，后端接收的字符串将会使用 URL 编码`urlencode()`后写入配置文件，但通过`ThemeConfig:Array`获取到的变量则为解码后的内容
 :::
 
 ```php
@@ -321,8 +319,6 @@ $Config = [
 
 即 Select 遍历后的 Key=>Element['Default'] + Text 遍历后的 Key=>Element['Default'] 输出最终的 Array
 
-
-
 ## 四.版本信息编写
 
 ### 版本信息格式示例
@@ -370,8 +366,6 @@ $Config = [
 }
 ```
 
-
-
 ## 五.语法示例
 
 ### 1.变量输出
@@ -390,7 +384,7 @@ Hello,{$name}！
 
 ::: warning 注意
 主题引擎在变量输出时如若为字符串类型将会默认转义后输出，使用`{$name|raw}`写法编译后为`<?php echo $name;?>`
-::: 
+:::
 
 ```php
 Hello,<?php echo htmlentities($name);?>！
@@ -404,7 +398,7 @@ Hello,<?php echo htmlentities($name);?>！
 Hello,{ $name}！
 ```
 
-将不会正常输出name变量，而是直接保持不变输出： `Hello,{ $name}！`
+将不会正常输出 name 变量，而是直接保持不变输出： `Hello,{ $name}！`
 
 模板标签的变量输出根据变量类型有所区别，刚才我们输出的是字符串变量，如果是数组变量，
 
@@ -448,9 +442,50 @@ Email：{$data['email']}
 
 ### 8.静态资源
 
-### 示例.含分页列表渲染
+静态资源统一存放在`assets`目录，可自行在目录内另建目录分类，通过`ThemeAssetsUrlPath`获取**资源目录**(即`assets`目录)的位置
 
-### 示例.接入极验
+```html
+<!-- head标签内示例 -->
+
+<!-- 该文件位于 /assets/img/favicon.ico -->
+<link rel="shortcut icon" href="{$ThemeAssetsUrlPath}/img/favicon.ico" />
+
+<!-- 该文件位于 /assets/mdui-v1.0.2/css/mdui.min.css -->
+<link
+    rel="stylesheet"
+    href="{$ThemeAssetsUrlPath}/mdui-v1.0.2/css/mdui.min.css"
+/>
+
+<!-- body标签内示例 -->
+
+<!-- 该文件位于 /assets/image/error.png -->
+<img class="mdui-img-fluid" src="{$ThemeAssetsUrlPath}/image/error.png" />
+
+<!-- 该文件位于 /assets/jquery-3.6.0/jquery.min.js -->
+<script src="{$ThemeAssetsUrlPath}/jquery-3.6.0/jquery.min.js"></script>
+
+<!-- 该文件位于 /assets/base.js -->
+<script src="{$ThemeAssetsUrlPath}/base.js"></script>
+```
+
+::: warning 注意
+在参考**默认主题**时，请注意你可能看到如`<script src="{__A-assets__}/clipboard-2.0.6/clipboard.min.js"></script>`，以`{__A-assets__}`开头的路径  
+这是因为，**默认主题**与**LC 系统后台**使用同一套 ui 组件库，而系统相关静态资源存放于固定位置(`/public/view/admin/assets`目录下)，可自行查询是否有需要的静态资源并通过`{__A-assets__}`获取文件系统相关静态资源
+:::
+
+### 9.API 发送数据
+
+### 10.示例
+
+#### 列表渲染
+
+#### 分页渲染
+
+#### 适配极验
+
+> 目前支持极验的 api 有：  
+> `/api/CardsComments/add`  
+> `/api/Cards/add`
 
 ### 详细语法参考
 
@@ -459,9 +494,11 @@ Email：{$data['email']}
 主题开发不顺时，及时参考`默认主题`，如有疑问可通过社区询问交流
 :::
 
-### 
 
-## 六.开发注意
+## 六.API
+请参考Apipost文档：[https://console-docs.apipost.cn/preview/f516dd89d7de816c/3616f367a6ad710f](https://console-docs.apipost.cn/preview/f516dd89d7de816c/3616f367a6ad710f)
+
+## 七.开发注意
 
 ### 前端模板变量调用规范
 
