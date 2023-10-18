@@ -496,7 +496,7 @@ Email：{$data['email']}
 
 
 ## 六.API
-请参考Apipost文档：[https://console-docs.apipost.cn/preview/f516dd89d7de816c/3616f367a6ad710f](https://console-docs.apipost.cn/preview/f516dd89d7de816c/3616f367a6ad710f)
+请参考Apipost文档：[https://console-docs.apipost.cn/preview/ad83ecdb4f10e38b/e187796270055b7b](https://console-docs.apipost.cn/preview/ad83ecdb4f10e38b/e187796270055b7b)
 
 ## 七.开发注意
 
