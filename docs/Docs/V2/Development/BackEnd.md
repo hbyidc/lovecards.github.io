@@ -10,3 +10,5 @@ TP 模板开发参数-全局
 | AdminData：Array     | 当前登入管理员数据       |                                                              |
 | ViewTitle：String    | 渲染页面的标题           | `<title>{$ViewTitle} - {$SystemData['siteName']}</title>`    |
 | SystemConfig：Array  | 系统配置                 |                                                              |
+| SystemControllerName | 全局 当前类名            |                                                              |
+| SystemActionName     | 全局 当前方法名          |                                                              |
