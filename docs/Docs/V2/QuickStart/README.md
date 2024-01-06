@@ -12,3 +12,4 @@ description: 查阅指南
 -   [Docker部署❌](./DockerDeployment.md)
 -   [拓展与帮助❌](./ExpandAndHelp.md)
 
+-   [主题添加](./Themeadd.md)
