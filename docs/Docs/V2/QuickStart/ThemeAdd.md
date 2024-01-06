@@ -1,9 +1,9 @@
 ---
 lang: zh-CN
-title: 模板部署指南
+title: 主题安装指南
 description: 
 ---
-# LC2网站模板 部署指南
+# LC2主题安装指南
 
 ::: tip 内容源自
 作者：Cheney 
@@ -13,12 +13,12 @@ Email：1969947820@qq.com
 
 ## 准备阶段
 
->在论坛下载你所需要的模板
+>在论坛下载你所需要的主题
 > 
 ![](../../../Images/Docs/V2/QuickStart/Themeadd/1-1.png)
 
 
-### 上传模板
+### 上传主题
 
 >将文件上传至public\theme
 
@@ -28,7 +28,7 @@ Email：1969947820@qq.com
 
 ![](../../../Images/Docs/V2/QuickStart/Themeadd/1-4.png)
 
-### 解压模板
+### 解压主题
 
 >模板解压到theme文件夹内
 
@@ -38,7 +38,7 @@ Email：1969947820@qq.com
 
 ![](../../../Images/Docs/V2/QuickStart/Themeadd/2-1.png)
 
->选择刚才导入的模板的名字，点击设为当前主题
+>选择刚才导入的主题的名字，点击设为当前主题
 
 ![](../../../Images/Docs/V2/QuickStart/Themeadd/2-2.png)
 
