@@ -21,6 +21,7 @@ export default {
                     children: [
                         "/Docs/V2/Development",
                         "/Docs/V2/Development/NamingConvention",
+                        "/Docs/V2/Development/ThemeDevelopmentNew",
                         "/Docs/V2/Development/ThemeDevelopment",
                     ],
                 },

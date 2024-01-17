@@ -1,6 +1,6 @@
 ---
 lang: zh-CN
-title: 主题开发-旧🧊
+title: 主题开发-新✨
 description:
 ---
 
@@ -14,130 +14,157 @@ description:
 
 ```
 .
+├── app (应用目录)
+	├── xxx (多级目录)
+	└── xxx.html (页面文件)
 ├── assets (资源目录)
 ├── public (公用组件目录，可选的)
-├── card.html (卡片详情页，可选的)
-├── cards-add.html (卡片添加页，可选的)
-├── cards-search.html  (卡片搜索页，可选的)
-├── cards-tag.html (卡片标签分类页，可选的)
-├── cards.html (卡片标签分类页，可选的)
-├── index.html (门户首页)
 ├── info.ini  (主题版本信息)
 ├── config.php (主题配置，可选的)
 └── show.png (主题预览图)
 ```
 
+## 二.主题引擎基础
+
+### 应用目录与URL的关系
+
+在LC2.2以前并没有`主题引擎`，假设我们需要一个页面来展示"卡片"内容，那么我们将寻找`card.html`的文件写入代码，然后通过访问URL`//xxx.xxx.cn/index/card`就可以访问到对应的`控制器`去渲染指定html文件，而`控制器`已经写入固定文件名的页面即`card.html`，那么也就是说页面的个数、文件的名称、包括URL的路径都将取决于已经提前编写好的`控制器`，这大大降低了主题开发的自由度。
+
+而`主题引擎1.0`就解决了该问题，对于页面的个数、文件的名称、包括URL的路径，将不在受`控制器`限制，并且采用“约定式”的方案尽可能满足开发自由度的需求。
+
+“约定式”简单来说即`app`目录对应URL的`//xxx.xxx.cn/index/`，将`app`目录视作根目录，在此目录下的html文件(暂仅支持全小写)路径直接绑定在URL路径上，接下让我们通过一个简单的例子来理解。
+
+在`主题引擎1.0`的情况下，假设我们需要一个页面来展示"卡片"内容，我们可以怎么做：
+
+1. 可以创建文件`app/card.html`，那么对应的URL将自动绑定在`//xxx.xxx.cn/index/card`当然文件名也完全自由不一定要使用“card”也可以是“kapian.html”那么绑定的URL则是`//xxx.xxx.cn/index/kapian`
+
+2. 可以创建文件`app/cards/card.html`，那么对应的URL将自动绑定在`//xxx.xxx.cn/index/cards/card`，也就是说可以通过创建文件夹的方式来改变URL，同样目录也不指定名称且支持多层级，可以是`app/kapian/test/card.html`那么绑定的URL则是`//xxx.xxx.cn/index/kapian/test/card`
+
+3. 特殊绑定关系，`index.html`文件，创建文件`app/card/index.html`时绑定的URL为`//xxx.xxx.cn/index/card/`、`//xxx.xxx.cn/index/card`、`//xxx.xxx.cn/index/card/index`，也就是说访问三个URL中任意一个都可渲染“卡片”页面
+
 ::: warning 注意
-当访问至可选文件时如若缺失将自动重定向到 404 页面
+当URL没有绑定应用目录下任何一个文件时将自动跳转至404页面
 :::
 
-## 二.基础变量
+### 页面的数据分配与渲染
 
-### 部分变量命名详解
+我们仍然拿'卡片'页面距离，我们该如何获取到对应卡片的数据并渲染页面：
 
-| 头（前缀） | 说明                   |
-| ---------- | ---------------------- |
-| **Theme**  | 模板相关               |
-| **LC**     | LoveCards 程序本体相关 |
-| **View**   | 渲染页面相关           |
-| **System** | 系统相关               |
+1. 我们创建文件`app\cards\card.html`则绑定的URL为`//xxx.xxx.cn/index/cards/card`
 
-### 全局变量
+2. 编写配置文件`app\config.php`中的`PageAssignData`为页面分配数据集
+    配置写法：
+    
+    ```php
+    'PageAssignData' => [
+        '/cards/card' => [
+            'Card',
+        ],
+    ]
+    ```
+    
+3. 编写HTML渲染对应数据
 
-::: tip 说明
-即，`/public/view/index`目录下的模板开发时，所有页面可用的变量
-:::
+4. 访问URL`//xxx.xxx.cn/index/cards/card?id=1`查看渲染结果卡片id为1的详情页面
 
-| 参数名                 | 类型     | 描述                   | 返回示例 |
-| ---------------------- | -------- | ---------------------- | -------- |
-| **Theme**AssetsUrlPath | _String_ | 获取当前模板的资源路径 |          |
-| **Theme**Config        | _Array_  | 获取当前模板的配置     |          |
-| **View**Keywords       | _String_ | 渲染页面的关键词       |          |
-| **View**Description    | _String_ | 渲染页面的介绍         |          |
-| **View**Title          | _String_ | 渲染页面的标题         |          |
-| **System**Data         | _Array_  | 系统信息               |          |
-| **System**Config       | _Array_  | 系统配置               |          |
-| **LC**VersionInfo      | _Array_  | 程序本体信息           |          |
+数据渲染可参考：[五.语法示例](./ThemeDevelopment.md#五-语法示例)
 
-### index.html
+数据集结构参考：
+| 数据集         | 要求参数       | 结构     | 描述 |
+| -------------- | -------------- | -------- | ---- |
+| HotCardList    |                | CardList |      |
+| CommonCardList | param：'model' | CardList |      |
+| SearchCardList |                | CardList |      |
+| TagCardList    |                | CardList |      |
+| Card           | param：*'id'   | Card     |      |
+| TagList        | param：'model' | TagList  |      |
+| MyInfo         |                | MyInfo   |      |
 
-| **CardsList**-参数名 | 类型    | 描述                     | 返回示例 |
-| -------------------- | ------- | ------------------------ | -------- |
-| **CardsList**        | _Array_ | 当前页面唯一**卡片列表** |          |
+MyInfo：
 
-| **CardsTagsList**-参数名 | 类型     | 描述                                     | 返回示例 |
-| ------------------------ | -------- | ---------------------------------------- | -------- |
-| **CardsTagsList**        | _Array_  | 当前页面唯一**标签列表**                 |          |
-| **CardsTagsList**Json    | _String_ | 当前页面唯一**标签列表** Json 格式字符串 |          |
+```php
+"MyInfo" =>[
+    "id" => "int",
+    "number" => "string",
+    "avatar" => "string",
+    "email" => "string",
+    "phone" => "string",
+    "username" => "string",
+    "password" => "string",
+    "created_at" => "datetime",
+    "updated_at" => "datetime",
+    "deleted_at" => "datetime",
+    "status" => "int",
+]
+```
 
-### cards.html
+TagList：
 
-| **CardsList**-参数名             | 类型     | 描述                                       | 返回示例 |
-| -------------------------------- | -------- | ------------------------------------------ | -------- |
-| **CardsList**                    | _Array_  | 当前页面唯一**卡片列表**                   |          |
-| **CardsList**EasyPagingComponent | _String_ | 当前页面唯一**卡片列表**的快捷分页按钮组件 |          |
-| **CardsList**Max                 | _Int_    | 当前页面唯一**卡片列表**的每页卡片最大数   |          |
+```php
+"CardsTagsListJson" => "json_encode(CardsTagsList)",
+"CardsTagsList" => [
+    0 => [
+        "id" => 1,
+        "aid" => 1,
+        "name" => "标签1",
+        "tip" => "标签1测试",
+        "status" => 0,
+        "time" => "2024-01-09 09:19:50",
+    ],
+],
+"TagList" => [
+    "CardModel" => null,
+]
+```
 
-| **CardsTagsList**-参数名 | 类型     | 描述   | 返回示例 |
-| ------------------------ | -------- | ------ | -------- |
-| **CardsTags**List        | _Array_  | 同上文 |          |
-| **CardsTags**ListJson    | _String_ | 同上文 |          |
+CardList：
 
-### card.html
+拿CommonCardList举例
 
-| **Card**-参数名 | 类型    | 描述             | 返回示例 |
-| --------------- | ------- | ---------------- | -------- |
-| **Card**Model   | _Int_   | 当前卡片模型     |          |
-| **Card**Data    | _Array_ | 当前卡片数据     |          |
-| **Card**ImgList | _Array_ | 当前卡片相关图片 |          |
+```php
+"CommonCardList" => [
+    "CardListEasyPagingComponent" => "<ul class="pager"><li class="disabled"><span>&laquo;</span></li> <li><a href="/index/Cards/index/model/1?page=2">&raquo;</a></li></ul>",
+    "CardListMax" => 12,
+    "CardList" => [
+        0 =>[
+            "id" => 16,
+            "uid" => 0,
+            "content" => "妈妈说，人最好不要错过两样东西：最后一班回家的车和一个深爱你的人。这一次，我不想再错过你了。",
+            "img" => "https://img1.imgtp.com/2023/09/17/WVpo8zFA.jpg",
+            "woName" => "王聪聪",
+            "woContact" => "",
+            "taName" => "孙菲菲",
+            "taContact" => null,
+            "good" => 19,
+            "comments" => 3,
+            "look" => 30,
+            "tag" => "["1","3","5"]",
+            "model" => 0,
+            "time" => "2024-01-09 07:07:20",
+            "ip" => "127.0.0.1",
+            "top" => "0",
+            "status" => "0",
+            "ipGood" => true,
+        ],
+        ...,
+        12 =>[
+            ...,
+        ],
+    ],
+    "CardsModel" => 1, //其他CardList没有
+    "ViewTitle" => "卡片墙"
+]
+```
 
-| **CardCommentsList**-参数名             | 类型     | 描述                                       | 返回示例 |
-| --------------------------------------- | -------- | ------------------------------------------ | -------- |
-| **CardCommentsList**                    | _Array_  | 当前页面唯一**评论列表**                   |          |
-| **CardCommentsList**EasyPagingComponent | _String_ | 当前页面唯一**评论列表**的快捷分页按钮组件 |          |
-| **CardCommentsList**Max                 | _Int_    | 当前页面唯一**评论列表**的每页卡片最大数   |          |
 
-| **CardsTagsList**-参数名 | 类型     | 描述   | 返回示例 |
-| ------------------------ | -------- | ------ | -------- |
-| **CardsTags**List        | _Array_  | 同上文 |          |
-| **CardsTags**ListJson    | _String_ | 同上文 |          |
 
-### cards-add.html
+### 页面的鉴权
 
-| **CardsTagsList**-参数名 | 类型     | 描述   | 返回示例 |
-| ------------------------ | -------- | ------ | -------- |
-| **CardsTags**List        | _Array_  | 同上文 |          |
-| **CardsTags**ListJson    | _String_ | 同上文 |          |
+| 权限              | 要求参数         | 描述             |
+| ----------------- | ---------------- | ---------------- |
+| CookieUtokenCheck | cookie：'UTOKEN' | 校验用户是否登入 |
 
-### cards-search.html
 
-| **CardsList**-参数名             | 类型     | 描述   | 返回示例 |
-| -------------------------------- | -------- | ------ | -------- |
-| **CardsList**                    | _Array_  | 同上文 |          |
-| **CardsList**EasyPagingComponent | _String_ | 同上文 |          |
-| **CardsList**Max                 | _Int_    | 同上文 |          |
-
-| **CardsTagsList**-参数名 | 类型     | 描述   | 返回示例 |
-| ------------------------ | -------- | ------ | -------- |
-| **CardsTags**List        | _Array_  | 同上文 |          |
-| **CardsTags**ListJson    | _String_ | 同上文 |          |
-
-### cards-tag.html
-
-| **CardsList**-参数名             | 类型     | 描述   | 返回示例 |
-| -------------------------------- | -------- | ------ | -------- |
-| **CardsList**                    | _Array_  | 同上文 |          |
-| **CardsList**EasyPagingComponent | _String_ | 同上文 |          |
-| **CardsList**Max                 | _Int_    | 同上文 |          |
-
-| **CardsTagsList**-参数名 | 类型     | 描述   | 返回示例 |
-| ------------------------ | -------- | ------ | -------- |
-| **CardsTags**List        | _Array_  | 同上文 |          |
-| **CardsTags**ListJson    | _String_ | 同上文 |          |
-
-### 使用变量
-
-[五.语法示例](./ThemeDevelopment.md#五-语法示例)
 
 ## 三.配置编写
 
@@ -147,7 +174,7 @@ description:
 用于实现一些主题设置以及显示，**若无可省略配置文件**  
 目前支持格式有:  
 `Select`(可用于一些固定选项的变量)  
-`Text`(可用于一下自定内容的变量)
+`Text`(可用于自定内容的变量)  
 :::
 
 ::: warning 注意
@@ -366,9 +393,17 @@ $Config = [
 }
 ```
 
-## 五.语法示例
+## 五.主题开发指导
 
-### 1.变量输出
+### Ⅰ.分离开发
+
+我们建议以及实际准本的发展方向，默认主题的数据渲染以及操作将随着LC的API逐步完善而脱离后端
+
+### Ⅱ.混合开发
+
+#### 语法示例：
+
+##### 1.变量输出
 
 ```php
 $name = 'LoveCards';
@@ -428,19 +463,19 @@ Email：{$data['email']}
 {$user.nickname|default="这家伙很懒，什么也没留下"}
 ```
 
-### 2.使用函数
+##### 2.使用函数
 
-### 3.运算符
+##### 3.运算符
 
-### 4.原样输出
+##### 4.原样输出
 
-### 5.注释
+##### 5.注释
 
-### 6.包含文件
+##### 6.包含文件
 
-### 7.标签
+##### 7.标签
 
-### 8.静态资源
+##### 8.静态资源
 
 静态资源统一存放在`assets`目录，可自行在目录内另建目录分类，通过`ThemeAssetsUrlPath`获取**资源目录**(即`assets`目录)的位置
 
@@ -473,21 +508,18 @@ Email：{$data['email']}
 这是因为，**默认主题**与**LC 系统后台**使用同一套 ui 组件库，而系统相关静态资源存放于固定位置(`/public/view/admin/assets`目录下)，可自行查询是否有需要的静态资源并通过`{__A-assets__}`获取文件系统相关静态资源
 :::
 
-### 9.API 发送数据
+##### 9.API 发送数据
 
-### 10.示例
-
-#### 列表渲染
-
-#### 分页渲染
-
-#### 适配极验
+##### 10.示例
+###### 列表渲染
+###### 分页渲染
+###### 适配极验
 
 > 目前支持极验的 api 有：  
-> `/api/CardsComments/add`  
+> `/api/Comments/add`  
 > `/api/Cards/add`
 
-### 详细语法参考
+#### 详细语法参考：
 
 [介绍 · ThinkTemplate 开发指南 · 看云 (kancloud.cn)](https://www.kancloud.cn/manual/think-template/1286403)
 ::: warning 建议
@@ -495,17 +527,17 @@ Email：{$data['email']}
 :::
 
 
-## 六.API
+### Ⅲ.API相关
 请参考Apipost文档：[https://console-docs.apipost.cn/preview/ad83ecdb4f10e38b/e187796270055b7b](https://console-docs.apipost.cn/preview/ad83ecdb4f10e38b/e187796270055b7b)
 
-## 七.开发注意
+### Ⅳ.开发注意
 
-### 前端模板变量调用规范
+#### 前端模板变量调用规范
 
 -   当您需要在 html 中输出数组的某一元素时，我们建议您使用`{$name['element']}`或`{$name[0]}`的形式
 
 -   当您需要在 html 标签的属性中输出数组的某一元素时，我们建议您使用`{$name.element}`或`{$name.0}`的形式
 
-### 主题配置相关
+#### 主题配置相关
 
 -   当你设置为 bool 类型时前端无法直接输出，可通过判断模板语法简介输出
