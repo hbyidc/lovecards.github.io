@@ -70,15 +70,15 @@ description:
 数据渲染可参考：[五.语法示例](./ThemeDevelopment.md#五-语法示例)
 
 数据集结构参考：
-| 数据集         | 要求参数       | 结构     | 描述 |
-| -------------- | -------------- | -------- | ---- |
-| HotCardList    |                | CardList |      |
-| CommonCardList | param：'model' | CardList |      |
-| SearchCardList |                | CardList |      |
-| TagCardList    |                | CardList |      |
-| Card           | param：*'id'   | Card     |      |
-| TagList        | param：'model' | TagList  |      |
-| MyInfo         |                | MyInfo   |      |
+| 数据集         | 要求参数                          | 结构     | 描述 |
+| -------------- | --------------------------------- | -------- | ---- |
+| HotCardList    |                                   | CardList |      |
+| CommonCardList | param：'model'                    | CardList |      |
+| SearchCardList | param：'search'、'value'、'model' | CardList |      |
+| TagCardList    |                                   | CardList |      |
+| Card           | param：*'id'                      | Card     |      |
+| TagList        | param：'model'                    | TagList  |      |
+| MyInfo         |                                   | MyInfo   |      |
 
 MyInfo：
 
