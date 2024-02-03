@@ -12,6 +12,7 @@ export default {
                         "/Docs/V2/QuickStart/1panelDeploymen",
                         "/Docs/V2/QuickStart/DockerDeployment",
                         "/Docs/V2/QuickStart/Themeadd",
+                        "/Docs/V2/QuickStart/EmailSet",
                         "/Docs/V2/QuickStart/ExpandAndHelp",
                     ],
                 },
