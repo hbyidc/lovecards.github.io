@@ -1,9 +1,9 @@
 ---
 lang: zh-CN
-title: 主题安装指南
+title: 邮件设置指南
 description:
 ---
-# LC2邮件验证码 设置指南
+# LC2邮件 设置指南
 
 ::: tip 内容源自
 作者：Cheney
