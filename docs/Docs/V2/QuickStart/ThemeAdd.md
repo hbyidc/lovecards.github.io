@@ -3,7 +3,7 @@ lang: zh-CN
 title: 主题安装指南
 description: 
 ---
-# LC2主题安装指南
+# LC2主题 安装指南
 
 ::: tip 内容源自
 作者：Cheney 
