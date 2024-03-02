@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-5565070c","path":"/Images/Docs/V2/QuickStart/EmailSet/","title":"","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1706969476000,"contributors":[{"name":"LCRCheney","email":"114345721+LCRCheney@users.noreply.github.com","commits":1}]},"filePathRelative":"Images/Docs/V2/QuickStart/EmailSet/README.md"}');export{e as data};
