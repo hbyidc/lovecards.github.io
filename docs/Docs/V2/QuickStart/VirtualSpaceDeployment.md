@@ -1,75 +1,82 @@
 ---
 lang: zh-CN
 title: 虚拟主机部署指南
-description: 
 ---
 # 虚拟主机 部署指南
+虚拟主机推荐您使用汉堡云IDC，LoveCard唯一指定服务商！
+虚拟主机低至2.88每月，购买链接：https://hbyidc.com/aff/WOQYOSHM
+使用汉堡云IDC的虚拟主机，您可以一键部署LoveCard2.3.0版本，点击按钮，1分钟自动部署！
 
-::: tip 内容源自
-作者：shixin  
-Email：2936626094@qq.com  
-:::
+## 【推荐】一键部署教程
+>虚拟主机一键部署汉堡云IDC独家！其他厂商虚拟主机请查看手动部署教程~
 
-## 准备阶段
+>虚拟主机低至2.88每月，购买链接：https://hbyidc.com/aff/WOQYOSHM
 
->进入自己的虚拟主机控制中心
+开始部署
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/2.png)
+来到控制面板后在侧边栏找到一键部署，选择LoveCard2.3.0 点击确认部署 随后点击确定 等待15-30秒即可
+![image](https://github.com/user-attachments/assets/d5293e7e-f800-4b3f-ad82-d3fe5ebcd0ff)
 
-### 绑定域名
+在基础配置的设置PHP版本中 选择PHP8.0 保存
+![image](https://github.com/user-attachments/assets/83e7c780-fb66-4035-bcf9-720bf0fe3159)
 
->点击 _域名管理_ 然后看下图设置
+绑定域名（解析教程在这里就不多赘述了，大家可以百度或者询问客服），甩一个使用汉堡云二级域名的解析教程：https://bk.hbyidc.com/wz/505
+![image](https://github.com/user-attachments/assets/6672117e-ff94-4e2a-b352-af227374d363)
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/3.png)
+## 手动部署教程
+> 本手动教程使用用所有“MN宝塔主机分销系统”的虚拟主机控制面板，覆盖市面上大多数IDC的控制面板！
 
-### 上传源码 
+> 如果您是汉堡云IDC虚拟主机强烈推荐使用一键部署！
 
->点击 _文件管理_ - _上传_ ,把下载的源码上传进去，然后解压
+首先，进入虚拟主机的控制面板
+![image](https://github.com/user-attachments/assets/a1ff0d73-697b-4e3c-aece-970c8c7f01ec)
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/4.png)
+然后点击数据管理，再点击在线文件管理
+![image](https://github.com/user-attachments/assets/55bfba22-d7a2-45ce-870f-0733f289bf5d)
 
->解压完成后进入源码文件夹,全选文件,复制到上图的wwwroot目录下
+上传源码
+![image](https://github.com/user-attachments/assets/243e4c91-0465-420d-9961-ef9517642d1c)
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/5.png)
+解压源码
+![image](https://github.com/user-attachments/assets/a2425de3-60b7-417e-8e1a-6a64fea71166)
 
-### 简单的配置
+点击基本配置→设置运行目录→选择public，然后保存
+![image](https://github.com/user-attachments/assets/7224ee50-3de4-4794-87e9-9c8f31529283)
 
->点击 _环境设置_ - _php版本_ 把php版本改成8.0(当前LC版本72|73|74|80皆可，具体可根据LC版本说明设置)
+设置伪静态为“ThinkPHP”
+![image](https://github.com/user-attachments/assets/34078105-a403-484f-bce9-68771819324c)
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/6.png)
+在基础配置的设置PHP版本中 选择PHP8.0 保存
+![image](https://github.com/user-attachments/assets/83e7c780-fb66-4035-bcf9-720bf0fe3159)
 
->点击 _伪静态设置_ 把伪静态设置为 thinkphp
+绑定域名（解析教程在这里就不多赘述了），甩一个使用汉堡云二级域名的解析教程：https://bk.hbyidc.com/wz/505
+![image](https://github.com/user-attachments/assets/6672117e-ff94-4e2a-b352-af227374d363)
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/7.png)
+恭喜您！！！控制面板的设置到此结束！
+随后，请您打开域名开始安装 打开后无脑下一步即可
+![image](https://github.com/user-attachments/assets/94b0513e-7bbf-4c4d-8f80-b48800a3625f)
 
->到这里,简单的配置就完成了
+在数据库配置界面，一一根据控制面板的内容对应即可
+安装界面的用户名/数据库 就是控制面板显示的数据库账号
+安装界面的密码 就是控制面板显示的数据库密码
+![image](https://github.com/user-attachments/assets/9cfa9635-36d3-482a-b895-939cc8a720db)
+![image](https://github.com/user-attachments/assets/76546838-014b-4f25-8eea-95b373471118)
 
-## 安装
+密钥这里 直接下一步即可
+![image](https://github.com/user-attachments/assets/f2f777d3-52e4-4bb9-ad0b-2b11c8136428)
 
->浏览器打开刚刚在域名管理里面添加的域名
->点击下一步
+🎉恭喜您！大功告成！可喜可贺呢~🎉
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/8.png)
+LoveCards伴您而行..
 
->下一步
+> 以下是一些信息...
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/9.png)
+> 后台地址：您的域名/admin
 
->查看数据库信息
+> 超管账户：admin
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/10.png)
+> 超管密码：admin
 
->_数据库服务器_ 填 _localhost_ 
->其他的根据自己的数据库信息来填
->填好后点击 _下一步_ 
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/11.png)
 
->点击 _进入你的领域！_ 即可食用lc2
 
-![](../../../Images/Docs/V2/QuickStart/VirtualSpaceDeployment/12.png)
-
-### 后台管理
-
->后台管理地址为：你的域名/admin
->默认帐密：admin
