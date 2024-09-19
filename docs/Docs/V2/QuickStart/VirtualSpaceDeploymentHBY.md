@@ -3,13 +3,13 @@ lang: zh-CN
 title: 虚拟主机部署指南
 ---
 # 虚拟主机 部署指南
-虚拟主机推荐您使用汉堡云IDC，LoveCard唯一指定服务商！
+## 虚拟主机推荐您使用汉堡云IDC，LoveCard唯一指定服务商！
 
 虚拟主机低至2.88每月，购买链接：https://hbyidc.com/aff/WOQYOSHM
 
 使用汉堡云IDC的虚拟主机，您可以一键部署LoveCard2.3.0版本，点击按钮，1分钟自动部署！
 
-新增！视频教程：https://www.bilibili.com/video/BV14zWkeSED1/?spm_id_from=333.999.0.0
+### 新增！视频教程：https://www.bilibili.com/video/BV14zWkeSED1/?spm_id_from=333.999.0.0
 
 ## 【推荐】一键部署教程
 >虚拟主机一键部署汉堡云IDC独家！其他厂商虚拟主机请查看手动部署教程~
@@ -19,7 +19,8 @@ title: 虚拟主机部署指南
 开始部署
 
 来到控制面板后在侧边栏找到一键部署，选择LoveCard2.3.0 点击确认部署 随后点击确定 等待15-30秒即可
-![image](https://github.com/user-attachments/assets/d5293e7e-f800-4b3f-ad82-d3fe5ebcd0ff)
+![image](https://github.com/user-attachments/assets/11093761-fbe9-4947-8e5f-7849f4fced2b)
+
 
 在基础配置的设置PHP版本中 选择PHP8.0 保存
 ![image](https://github.com/user-attachments/assets/83e7c780-fb66-4035-bcf9-720bf0fe3159)
