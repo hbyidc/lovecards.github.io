@@ -7,6 +7,7 @@ export default {
                     text: "🛠️部署",
                     children: [
                         "/Docs/V2/QuickStart",
+                        "/Docs/V2/QuickStart/VirtualSpaceDeploymentHBY",
                         "/Docs/V2/QuickStart/VirtualSpaceDeployment",
                         "/Docs/V2/QuickStart/BTDeploymen",
                         "/Docs/V2/QuickStart/1panelDeploymen",
