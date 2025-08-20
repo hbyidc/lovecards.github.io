@@ -5,7 +5,7 @@ title: 虚拟主机部署指南
 # 虚拟主机 部署指南
 虚拟主机推荐您使用汉堡云IDC，LoveCard唯一指定服务商！
 
-虚拟主机低至2.88每月，购买链接：https://hbyidc.com/aff/WOQYOSHM
+虚拟主机低至2.88每月，购买链接：https://hbyidc.com/recommend/4ai5youo0mTC
 
 使用汉堡云IDC的虚拟主机，您可以一键部署LoveCard2.3.0版本，点击按钮，1分钟自动部署！
 
@@ -24,7 +24,7 @@ title: 虚拟主机部署指南
 在基础配置的设置PHP版本中 选择PHP8.0 保存
 ![image](https://github.com/user-attachments/assets/83e7c780-fb66-4035-bcf9-720bf0fe3159)
 
-绑定域名（解析教程在这里就不多赘述了，大家可以百度或者询问客服），甩一个使用汉堡云二级域名的解析教程：https://bk.hbyidc.com/wz/505
+绑定域名（解析教程在这里就不多赘述了，大家可以百度或者询问客服），甩一个使用汉堡云二级域名的解析教程：https://docs.hbyidc.com/node/0197e378-6825-74ee-a495-9a0c53cc7785
 ![image](https://github.com/user-attachments/assets/6672117e-ff94-4e2a-b352-af227374d363)
 
 ## 手动部署教程
